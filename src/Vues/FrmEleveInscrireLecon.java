@@ -44,14 +44,12 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton3 = new javax.swing.JToggleButton();
         btnDeconnexion = new javax.swing.JToggleButton();
         btnModifE = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnConsulteRDV = new java.awt.Button();
         btnInscrireLecon = new java.awt.Button();
-        btnStatitisque = new java.awt.Button();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -71,14 +69,13 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
         lblErreurInscription = new javax.swing.JLabel();
         lblValideInscription = new javax.swing.JLabel();
         btnLecon = new javax.swing.JButton();
+        jComboBoxHeure = new javax.swing.JComboBox<>();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-
-        jToggleButton3.setText("Accueil");
 
         btnDeconnexion.setText("Deconnexion");
         btnDeconnexion.addActionListener(new java.awt.event.ActionListener() {
@@ -110,13 +107,6 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
         });
 
         btnInscrireLecon.setLabel("S'inscrire à une leçon");
-
-        btnStatitisque.setLabel("Statistique");
-        btnStatitisque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStatitisqueActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -255,49 +245,49 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxHeure.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8h-10h", "10h-12", "12h-14h", "14h-16h" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeconnexion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModifE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnStatitisque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(btnDeconnexion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnModifE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jComboBoxHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLecon)
                         .addGap(58, 58, 58)
                         .addComponent(lblErreurInscription)
                         .addGap(33, 33, 33)
                         .addComponent(lblValideInscription)
                         .addGap(137, 137, 137)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,15 +296,13 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModifE)
                     .addComponent(jToggleButton1)
-                    .addComponent(btnDeconnexion)
-                    .addComponent(jToggleButton3))
+                    .addComponent(btnDeconnexion))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStatitisque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel4)
                 .addGap(31, 31, 31)
@@ -327,7 +315,8 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLecon)
                     .addComponent(lblErreurInscription)
-                    .addComponent(lblValideInscription))
+                    .addComponent(lblValideInscription)
+                    .addComponent(jComboBoxHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -373,7 +362,7 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
         try {
 
             ArrayList list = leCtrlE.getMoniteurVoitureId(lstRDV_Moniteur.getSelectedValue(), lstVoiture.getSelectedValue());
-            inscription =leCtrlE.InscriptionLecon(date, (int) list.get(0), leUser.getIdEleve(), (String) list.get(1));
+            inscription =leCtrlE.InscriptionLecon(date,jComboBoxHeure.getSelectedItem().toString(), (int) list.get(0), leUser.getIdEleve(), (String) list.get(1));
         } catch (SQLException ex) {
             Logger.getLogger(FrmEleve.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -404,12 +393,6 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
             Logger.getLogger(FrmEleve.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void btnStatitisqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatitisqueActionPerformed
-        this.dispose();
-        FrmEleveStatistique frm = new FrmEleveStatistique(leUser);
-        frm.setVisible(true);
-    }//GEN-LAST:event_btnStatitisqueActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         this.dispose();//ferme le frmEleve
@@ -458,8 +441,8 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
     private java.awt.Button btnInscrireLecon;
     private javax.swing.JButton btnLecon;
     private javax.swing.JButton btnModifE;
-    private java.awt.Button btnStatitisque;
     private com.toedter.calendar.JCalendar cldLecon;
+    private javax.swing.JComboBox<String> jComboBoxHeure;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
@@ -474,7 +457,6 @@ public class FrmEleveInscrireLecon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JLabel lblErreurInscription;
     private javax.swing.JLabel lblValideInscription;
     private javax.swing.JList<String> lstRDV_Licence;

@@ -9,8 +9,11 @@ import Controlers.CtrlUser;
 import Entities.Eleve;
 import Entities.User;
 import Tools.ConnexionBDD;
-import Tools.ModeJTable;
+import Tools.ModelJTable;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -20,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author louis
  */
 public class FrmEleveModifInfo extends javax.swing.JFrame {
-    ModeJTable mdl;
+    ModelJTable mdl;
     CtrlEleve ctrlEleve;
     CtrlUser ctrlUser;
     ConnexionBDD cnx;
@@ -70,13 +73,15 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
         btnModif = new javax.swing.JButton();
         dcNaissance = new com.toedter.calendar.JDateChooser();
         lblNom10 = new javax.swing.JLabel();
-        jToggleButton3 = new javax.swing.JToggleButton();
         btnDeconnexion = new javax.swing.JToggleButton();
         btnModifE = new javax.swing.JButton();
         btnEleve = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -117,6 +122,12 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
 
         cboSexe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Homme", "Femme" }));
 
+        txtTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelActionPerformed(evt);
+            }
+        });
+
         btnModif.setText("MODIFIER");
         btnModif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +138,6 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
         lblNom10.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblNom10.setText("Date de naissance");
 
-        jToggleButton3.setText("Accueil");
-
         btnDeconnexion.setText("Deconnexion");
         btnDeconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +147,11 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
 
         btnModifE.setBackground(new java.awt.Color(51, 102, 0));
         btnModifE.setText("Modifier ces informations");
+        btnModifE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifEActionPerformed(evt);
+            }
+        });
 
         btnEleve.setText("Élève");
         btnEleve.addActionListener(new java.awt.event.ActionListener() {
@@ -188,8 +202,6 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
                             .addComponent(lblNom10)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeconnexion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnModifE)
@@ -222,8 +234,7 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModifE)
                     .addComponent(btnEleve)
-                    .addComponent(btnDeconnexion)
-                    .addComponent(jToggleButton3))
+                    .addComponent(btnDeconnexion))
                 .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -269,6 +280,8 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
                     .addContainerGap(470, Short.MAX_VALUE)))
         );
 
+        dcNaissance.getAccessibleContext().setAccessibleName("");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -304,7 +317,9 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
         }
         else {
         String DateNaissance = new SimpleDateFormat("yyyy-MM-dd").format(dcNaissance.getDate());
-        ctrlEleve.ModifInformationEleve(txtNom.getText(), txtPrenom.getText(),cboSexe.getSelectedItem().toString(), txtAdresse.getText(), Integer.parseInt(txtPostal.getText()), txtVille.getText(), Integer.parseInt(txtTel.getText()), txtMail.getText(), txtMdpModif.getText(),theUser.getIdEleve(),DateNaissance);
+        ctrlEleve.ModifInformationEleve(txtNom.getText(), txtPrenom.getText(),cboSexe.getSelectedItem().toString(), txtAdresse.getText(), txtPostal.getText(), txtVille.getText(), txtTel.getText(),theUser.getIdEleve(),DateNaissance);
+        ctrlEleve.ModifInformationEleve2(txtMail.getText(), txtMdpModif.getText(), theUser.getIdEleve());
+        JOptionPane.showMessageDialog(this, "Modification confirmée");
         }
     }//GEN-LAST:event_btnModifActionPerformed
 
@@ -312,6 +327,29 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
         cnx = new ConnexionBDD();
         ctrlEleve = new CtrlEleve();
         ctrlUser = new CtrlUser();
+     
+      Eleve eleve=new Eleve();
+      User user=new User();
+        try {
+            user=ctrlEleve.getInfo2(theUser.getIdEleve());
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmEleveModifInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            eleve=ctrlEleve.getInfo(theUser.getIdEleve());
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmEleveModifInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        txtNom.setText(eleve.getNom());
+        txtPrenom.setText(eleve.getPrenom());
+        txtPostal.setText(eleve.getPostale());
+        txtTel.setText(eleve.getTel());
+        txtVille.setText(eleve.getVille());
+        txtAdresse.setText(eleve.getAdresse1());
+        txtMail.setText(user.getMail());
+        txtMdpModif.setText(user.getMdp());
+        dcNaissance.setDateFormatString(eleve.getNaissance());
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeconnexionActionPerformed
@@ -325,6 +363,18 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
         FrmEleve frm = new FrmEleve(theUser);
         frm.setVisible(true);
     }//GEN-LAST:event_btnEleveActionPerformed
+
+    private void btnModifEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModifEActionPerformed
+
+    private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -368,7 +418,6 @@ public class FrmEleveModifInfo extends javax.swing.JFrame {
     private javax.swing.JButton btnModifE;
     private javax.swing.JComboBox<String> cboSexe;
     private com.toedter.calendar.JDateChooser dcNaissance;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblNom;
     private javax.swing.JLabel lblNom1;

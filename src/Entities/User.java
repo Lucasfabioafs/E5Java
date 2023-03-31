@@ -12,7 +12,14 @@ public class User {
     private int idMoniteur;
     private int idEleve;
     private String statutUser;
+    private String mdp;
+    private String mail;
     
+    public User(){}
+    public User(String unMail,String unMdp){
+        mail=unMail;
+        mdp=unMdp;
+    }
     public User(int unIdMoniteur,int unIdEleve,String unStatut)
     {
         idMoniteur =unIdMoniteur;
@@ -42,6 +49,20 @@ public class User {
 
     public void setStatutUser(String statutUser) {
         this.statutUser = statutUser;
+    }
+
+    /**
+     * @return the mdp
+     */
+    public String getMdp() {
+        return mdp;
+    }
+
+    /**
+     * @return the mail
+     */
+    public String getMail() {
+        return mail;
     }
     
    

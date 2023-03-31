@@ -4,6 +4,9 @@
  */
 package Controlers;
 
+import Entities.Lecon;
+import Entities.Moniteur;
+import Entities.User;
 import Tools.ConnexionBDD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,40 +58,84 @@ public class CtrlMoniteur {
             Logger.getLogger(CtrlEleve.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public DefaultListModel GetRDV(int idMoniteur,String laDate) throws SQLException
+        
+   public Moniteur getInfo(int idMoniteur) throws SQLException {
+       Moniteur moniteur = new Moniteur();
+       try {
+//        ps = cnx.prepareStatement("Select Nom,Prenom,Adresse1,CodePostal,Ville,sexe,DateDeNaissance,Telephone" +
+//                                        "from Eleve" +
+//                                        "Join identifiant On Eleve.CodeEleve= identifiant.codeEleve where Identifiant.codeEleve = ?;");
+        ps = cnx.prepareStatement("Select * from moniteur where codeMoniteur = ?");
+        ps.setInt(1, idMoniteur);
+        rs = ps.executeQuery();
+        rs.next();
+        
+        moniteur=new Moniteur(idMoniteur, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+          
+        ps.close();
+       }catch (SQLException ex) {
+            Logger.getLogger(CtrlEleve.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("AGADOU");
+        }
+        return moniteur;
+   }
+   
+   public User getInfo2(int idMoniteur) throws SQLException {
+       User user = new User();
+       try {
+//        ps = cnx.prepareStatement("Select Nom,Prenom,Adresse1,CodePostal,Ville,sexe,DateDeNaissance,Telephone" +
+//                                        "from Eleve" +
+//                                        "Join identifiant On Eleve.CodeEleve= identifiant.codeEleve where Identifiant.codeEleve = ?;");
+        ps = cnx.prepareStatement("Select mail,mdp from identifiant where codeMoniteur = ?");
+        ps.setInt(1, idMoniteur);
+        rs = ps.executeQuery();
+        rs.next();
+        
+        user=new User(rs.getString(1), rs.getString(2));
+        
+        ps.close();
+       }catch (SQLException ex) {
+            Logger.getLogger(CtrlMoniteur.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("AGADOU");
+        }
+        return user;
+   }
+    public ArrayList<Lecon> GetRDV(int idMoniteur) throws SQLException
     {
         // Initialise le tableau
-        DefaultListModel model = new DefaultListModel();
-        JList list = new JList(model);
+        ArrayList<Lecon> lesRDV = new ArrayList<>();
+        
         try {
-            ps = cnx.prepareStatement("SELECT lecon.Date,lecon.Heure,eleve.Nom,categorie.Libelle from lecon "
+            ps = cnx.prepareStatement("SELECT lecon.Date,lecon.Heure,eleve.Nom,categorie.Libelle,Lecon.CodeLecon from lecon "
                                     + "JOIN eleve on lecon.CodeEleve = eleve.CodeEleve "
                                     + "JOIN moniteur on lecon.CodeMoniteur = moniteur.CodeMoniteur "
                                     + "JOIN vehicule on lecon.Immatriculation = vehicule.Immatriculation "
                                     + "JOIN categorie on vehicule.CodeCategorie = categorie.CodeCategorie "
-                                    + "where  moniteur.CodeMoniteur = ? and lecon.Date = ?;");
+                                    + "where  moniteur.CodeMoniteur = ? and lecon.Date >=CURRENT_DATE();");
             ps.setInt(1, idMoniteur);
-            ps.setString(2, laDate);
             rs = ps.executeQuery();
+            while(rs.next()) {
+               
+                Lecon lecon = new Lecon(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5));
+                lesRDV.add(lecon);
+            }
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(CtrlEleve.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (rs.next()) {
-            String[] items = {"Date : "+rs.getDate("Date").toString(),"Heure : "+rs.getTime("Heure").toString(),"Eleve : "+rs.getString("Nom"),"Licence : "+rs.getString("Libelle")};
-            for (int i = 0; i < items.length; i++) {
-                model.add(i, items[i]);
-            }
-        }else {
-            String[] items = {"Date : ","Heure : ","Eleve : ","Licence : "};
-            for (int i = 0; i < items.length; i++) {
-                model.add(i, items[i]);
-            }
-        }
-        ps.close();
         
-        return model;
+       
+        
+        return lesRDV;
     }
+    
+    public void supprimerLecon(int idLecon) throws SQLException{
+        ps=cnx.prepareStatement("DELETE from lecon where CodeLecon=?");
+        ps.setInt(1, idLecon);
+        ps.execute();
+    }
+            
+            
     public DefaultListModel getLicenceMoniteur(int idMoniteur) throws SQLException
     {
         // Initialise le tableau

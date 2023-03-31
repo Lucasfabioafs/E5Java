@@ -10,8 +10,8 @@ import java.util.Date;
  *
  * @author louis
  */
-public class Eleve {
-    private int idEleve;
+public class Moniteur {
+    private int idMoniteur;
     private String nom;
     private String prenom;
     private String sexe;
@@ -21,9 +21,9 @@ public class Eleve {
     private String ville;
     private String tel;
     
-    public Eleve(int unIdEleve,String unNom, String unPrenom, String unSexe, String uneNaissance, String uneAdresse, String unPostale, String uneVille, String unTel)
+    public Moniteur(int unIdMoniteur,String unNom, String unPrenom, String unSexe, String uneNaissance, String uneAdresse, String unPostale, String uneVille, String unTel)
     {
-        idEleve = unIdEleve;
+        idMoniteur = unIdMoniteur;
         nom = unNom;
         prenom = unPrenom;
         sexe = unSexe;
@@ -33,21 +33,21 @@ public class Eleve {
         ville = uneVille;
         tel = unTel;
     }
-public Eleve(){
+public Moniteur(){
     
 }
     /**
      * @return the idEleve
      */
-    public int getIdEleve() {
-        return idEleve;
+    public int getIdMoniteur() {
+        return idMoniteur;
     }
 
     /**
      * @param idEleve the idEleve to set
      */
-    public void setIdEleve(int idEleve) {
-        this.idEleve = idEleve;
+    public void setIdMoniteur(int idMoniteur) {
+        this.idMoniteur = idMoniteur;
     }
 
     /**

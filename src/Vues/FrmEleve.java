@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 public class FrmEleve extends javax.swing.JFrame {
     static User leUser;
     CtrlEleve leCtrlE;
+    
     /**
      * Creates new form FrmEleve
      */
@@ -44,11 +45,11 @@ public class FrmEleve extends javax.swing.JFrame {
         btnModifE = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         btnDeconnexion = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
         btnConsulteRDV = new java.awt.Button();
         btnInscrireLecon = new java.awt.Button();
-        btnStatitisque = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
+        jTextApayer = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,8 +75,6 @@ public class FrmEleve extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setText("Accueil");
-
         btnConsulteRDV.setLabel("Consulter vos RDV");
         btnConsulteRDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,54 +89,57 @@ public class FrmEleve extends javax.swing.JFrame {
             }
         });
 
-        btnStatitisque.setLabel("Statistique");
-        btnStatitisque.addActionListener(new java.awt.event.ActionListener() {
+        jTextApayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStatitisqueActionPerformed(evt);
+                jTextApayerActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Total à payer : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
-                .addComponent(jToggleButton3)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextApayer, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDeconnexion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModifE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
-                .addContainerGap(202, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStatitisque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(183, 183, 183))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModifE)
                     .addComponent(jToggleButton1)
-                    .addComponent(btnDeconnexion)
-                    .addComponent(jToggleButton3))
-                .addGap(18, 18, 18)
+                    .addComponent(btnDeconnexion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStatitisque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextApayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnConsulteRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInscrireLecon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,7 +159,12 @@ public class FrmEleve extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeconnexionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        CtrlEleve ctrlE = new CtrlEleve();
+        try {
+            jTextApayer.setText(String.valueOf(ctrlE.totalPayer(leUser.getIdEleve()))+" € ");
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmEleve.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -173,11 +180,9 @@ public class FrmEleve extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_btnInscrireLeconActionPerformed
 
-    private void btnStatitisqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatitisqueActionPerformed
-        this.dispose();
-        FrmEleveStatistique frm = new FrmEleveStatistique(leUser);
-        frm.setVisible(true);
-    }//GEN-LAST:event_btnStatitisqueActionPerformed
+    private void jTextApayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextApayerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextApayerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,9 +231,9 @@ public class FrmEleve extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnDeconnexion;
     private java.awt.Button btnInscrireLecon;
     private javax.swing.JButton btnModifE;
-    private java.awt.Button btnStatitisque;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextApayer;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
 }

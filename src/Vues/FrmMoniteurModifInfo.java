@@ -7,9 +7,13 @@ package Vues;
 import Controlers.CtrlEleve;
 import Controlers.CtrlMoniteur;
 import Controlers.CtrlUser;
+import Entities.Moniteur;
 import Entities.User;
 import Tools.ConnexionBDD;
-import Tools.ModeJTable;
+import Tools.ModelJTable;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -311,6 +315,33 @@ public class FrmMoniteurModifInfo extends javax.swing.JFrame {
         cnx = new ConnexionBDD();
         ctrlMoniteur = new CtrlMoniteur();
         ctrlUser = new CtrlUser();
+        
+     
+      Moniteur moniteur=new Moniteur();
+      User user=new User();
+        
+        try {
+            user=ctrlMoniteur.getInfo2(theUser.getIdMoniteur());
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(FrmMoniteurModifInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        try {
+            moniteur=ctrlMoniteur.getInfo(theUser.getIdMoniteur());
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(FrmMoniteurModifInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+       
+        
+        txtNom.setText(moniteur.getNom());
+        txtPrenom.setText(moniteur.getPrenom());
+        txtPostal.setText(moniteur.getPostale());
+        txtTel.setText(moniteur.getTel());
+        txtVille.setText(moniteur.getVille());
+        txtAdresse.setText(moniteur.getAdresse1());
+        txtMail.setText(user.getMail());
+        txtMdpModif.setText(user.getMdp());
+        dcNaissance.setDateFormatString(moniteur.getNaissance());
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeconnexionActionPerformed

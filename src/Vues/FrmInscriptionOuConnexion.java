@@ -33,7 +33,6 @@ public class FrmInscriptionOuConnexion extends javax.swing.JFrame {
 
         btnConnexion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnInscription = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,27 +51,18 @@ public class FrmInscriptionOuConnexion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel1.setText("Bienvenue sur Auto Ecole !");
 
-        btnInscription.setText("Inscription");
-        btnInscription.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInscriptionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConnexion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(btnInscription)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(186, 186, 186))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,9 +70,7 @@ public class FrmInscriptionOuConnexion extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConnexion)
-                    .addComponent(btnInscription))
+                .addComponent(btnConnexion)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -96,16 +84,10 @@ public class FrmInscriptionOuConnexion extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnexionActionPerformed
-        //this.dispose();
+     //   this.dispose();
         FrmConnexion frm = new FrmConnexion();
         frm.setVisible(true);
     }//GEN-LAST:event_btnConnexionActionPerformed
-
-    private void btnInscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscriptionActionPerformed
-        //this.dispose();
-        FrmInscription frm = new FrmInscription();
-        frm.setVisible(true);
-    }//GEN-LAST:event_btnInscriptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,7 +129,6 @@ public class FrmInscriptionOuConnexion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConnexion;
-    private javax.swing.JButton btnInscription;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
